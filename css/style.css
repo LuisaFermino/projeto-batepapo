@@ -125,6 +125,7 @@ main {
   left: 40px;
 }
 
+/* -- MENU LATERAL -- */
 .container-menu {
   background-color: #00000099;
   width: 100vw;
@@ -146,11 +147,25 @@ main {
 .icone-menu {
   font-size: 24px;
   z-index: 1000;
+  margin-top: 2vh;
 }
 
 .titulo-menu {
   text-align: center;
   padding: 30px;
-  font-size: 14px;
-  width: 95%;
+  font-size: 16px;
+  width: 75vw;
+  font-weight: 700;
+}
+
+.nome-usuario {
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 3vw;
+  margin-top: 3vh;
+}
+
+.etapa {
+  display: flex;
+  margin-left: 20px;
 }
