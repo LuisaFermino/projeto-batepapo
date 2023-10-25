@@ -147,14 +147,14 @@ main {
 .icone-menu {
   font-size: 24px;
   z-index: 1000;
-  margin-top: 2vh;
+  margin-top: 3vh;
 }
 
 .titulo-menu {
   text-align: center;
-  padding: 30px;
+  padding-top: 4vh;
   font-size: 16px;
-  width: 75vw;
+  width: 55vw;
   font-weight: 700;
 }
 
@@ -168,4 +168,13 @@ main {
 .etapa {
   display: flex;
   margin-left: 20px;
+}
+
+.titulos {
+  display: flex;
+  justify-content: center;
+}
+
+.escondido {
+  display: none;
 }
