@@ -1,0 +1,52 @@
+/** geral **/
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 15vh;
+  display: flex;
+  justify-content: center;
+}
+header {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  font-family: "Roboto", sans-serif;
+  padding-top: 10vh;
+}
+
+.logo {
+  width: 40vw;
+  height: 15vh;
+}
+
+.entrada {
+  width: 65vw;
+  height: 7vh;
+  background-color: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  text-align: center;
+  color: #aeaeae;
+  display: flex;
+}
+
+.entrar {
+  width: 25vw;
+  height: 6vh;
+  background-color: #e7e7e7;
+  color: #696969;
+  font-size: 14px;
+  border-radius: 9px;
+  border: 1px solid #e7e7e7;
+  margin-top: 2vh;
+}
+
+.botao-entrar {
+  display: flex;
+  justify-content: center;
+}
