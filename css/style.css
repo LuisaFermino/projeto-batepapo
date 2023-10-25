@@ -35,6 +35,7 @@ main {
   color: #aeaeae;
   display: flex;
   font-size: 16px;
+  outline: none;
 }
 
 .entrar {
@@ -113,14 +114,15 @@ main {
   font-size: 16px;
   width: 70vw;
   margin-left: 20px;
+  outline: none;
 }
 
 .icone-enviar {
   max-width: 6vw;
   max-height: 3vh;
   position: relative;
-  top: 25px;
-  left: 30px;
+  top: 30px;
+  left: 40px;
 }
 
 .container-menu {
@@ -131,7 +133,6 @@ main {
   right: 0;
   top: 0;
   z-index: 2;
-  display: none;
 }
 
 .menu-lateral {
@@ -143,8 +144,7 @@ main {
   top: 0;
 }
 .icone-menu {
-  width: 6vw;
-  height: 3vh;
+  font-size: 24px;
   z-index: 1000;
 }
 
