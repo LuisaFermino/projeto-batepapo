@@ -119,7 +119,7 @@ main {
   max-width: 6vw;
   max-height: 3vh;
   position: relative;
-  top: 20px;
+  top: 25px;
   left: 30px;
 }
 
@@ -153,4 +153,11 @@ main {
   padding: 30px;
   font-size: 14px;
   width: 95%;
+}
+
+@media screen and (max-width: 480px) {
+  input,
+  select {
+    font-size: 16px;
+  }
 }
