@@ -7,6 +7,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 header {
   display: flex;
@@ -37,7 +38,7 @@ main {
 }
 
 .entrar {
-  width: 25vw;
+  width: 26vw;
   height: 6vh;
   background-color: #e7e7e7;
   color: #696969;
@@ -50,4 +51,10 @@ main {
 .botao-entrar {
   display: flex;
   justify-content: center;
+}
+
+.tela-inicial {
+  position: fixed;
+  top: 0;
+  left: auto;
 }
