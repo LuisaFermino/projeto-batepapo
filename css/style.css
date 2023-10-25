@@ -33,6 +33,7 @@ main {
   text-align: center;
   color: #aeaeae;
   display: flex;
+  font-size: 16px;
 }
 
 .entrar {
@@ -40,7 +41,7 @@ main {
   height: 6vh;
   background-color: #e7e7e7;
   color: #696969;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 9px;
   border: 1px solid #e7e7e7;
   margin-top: 2vh;
