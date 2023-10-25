@@ -2,6 +2,8 @@ function logar() {
   let nomeUsuario = document.querySelector(".entrada").value;
 
   if (nomeUsuario === "lulu") {
-    alert("Ihaaaa");
+    location.href = "home.html";
+  } else {
+    alert("Usuário ou senha incorretos");
   }
 }
