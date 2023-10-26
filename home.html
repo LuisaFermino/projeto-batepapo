@@ -20,10 +20,14 @@
   <body class="body-home">
     <header class="menu-topo">
       <img src="img/logo.png" class="logo-home" />
-      <img src="img/icone-usuario.png" class="icone-usuario" />
+      <img
+        src="img/icone-usuario.png"
+        class="icone-usuario"
+        onclick="acionarMenu()"
+      />
     </header>
     <main>
-      <div class="container-menu">
+      <div class="container-menu escondido" onclick="fecharMenu()">
         <nav class="menu-lateral">
           <div class="titulo-mensagem">
             <p class="titulo-menu">Escolha um contato para enviar mensagem:</p>
