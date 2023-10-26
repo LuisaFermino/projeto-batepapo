@@ -185,3 +185,12 @@ main {
 .escondido {
   display: none;
 }
+
+.exit-menu {
+  font-size: 30px;
+  position: fixed;
+  bottom: 2vh;
+  left: 35vw;
+  z-index: 1000;
+  color: #a1a0a0;
+}
