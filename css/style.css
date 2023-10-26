@@ -21,8 +21,8 @@ main {
 }
 
 .logo {
-  width: 40vw;
-  height: 15vh;
+  max-width: 40vw;
+  max-height: 15vh;
 }
 
 .entrada {
@@ -162,7 +162,7 @@ main {
   font-size: 16px;
   font-weight: 400;
   margin-left: 3vw;
-  margin-top: 3vh;
+  margin-top: 4vh;
 }
 
 .etapa {
@@ -170,9 +170,16 @@ main {
   margin-left: 20px;
 }
 
-.titulos {
+.titulo-mensagem {
   display: flex;
   justify-content: center;
+  margin-top: 2vh;
+}
+
+.titulo-visibilidade {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
 }
 
 .escondido {
