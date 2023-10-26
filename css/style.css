@@ -200,6 +200,13 @@ main {
 }
 
 /* -- TIPO DE MENSAGENS  -- */
+
+.container-mensagens {
+  position: fixed;
+  left: 0;
+  top: 12vh;
+  min-height: 50vh;
+}
 .mensagem-status {
   background-color: #dcdcdc;
   width: 100vw;
