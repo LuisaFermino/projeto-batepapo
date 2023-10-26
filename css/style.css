@@ -205,7 +205,7 @@ main {
   width: 100vw;
   min-height: 6vh;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 1vh;
   display: flex;
 }
 
@@ -213,7 +213,7 @@ main {
   background-color: #ffffff;
   min-height: 6vh;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 1vh;
   display: flex;
 }
 
@@ -221,7 +221,7 @@ main {
   background-color: #ffdede;
   min-height: 6vh;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 1vh;
   display: flex;
 }
 
@@ -233,15 +233,10 @@ main {
 }
 
 .horario {
-  color: #aeaeae;
+  color: #9c9b9b;
 }
 
 .nome {
   font-weight: 700;
-  margin-left: 2vw;
-}
-
-.status {
-  font-weight: 400;
   margin-left: 2vw;
 }

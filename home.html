@@ -62,32 +62,37 @@
           ></ion-icon>
         </nav>
       </div>
-
-      <div class="mensagem-status">
-        <p class="textos">
-          <span class="horario">(10:43)</span>
-          <span class="nome">João</span>
-          <span class="status">entra na sala...</span>
-        </p>
-      </div>
-      <div class="mensagem-normais">
-        <p class="textos">
-          <span class="horario">(10:43)</span>
-          <span class="nome">João</span>
-          <span class="status">entra na sala...</span>
-        </p>
-      </div>
-      <div class="mensagem-reservada">
-        <p class="textos">
-          <span class="horario">(10:43)</span>
-          <span class="nome">João</span>
-          <span class="status">entra na sala...</span>
-        </p>
+      <div class="container-mensagens">
+        <div class="mensagem-status">
+          <p class="textos">
+            <span class="horario">(10:43)</span>
+            <span class="nome">João</span>
+            entra na sala...
+          </p>
+        </div>
+        <div class="mensagem-normais">
+          <p class="textos">
+            <span class="horario">(10:43)</span>
+            <span class="nome">João</span>
+            entra na sala...
+          </p>
+        </div>
+        <div class="mensagem-reservada">
+          <p class="textos">
+            <span class="horario">(10:43)</span>
+            <span class="nome">João</span>
+            entra na sala...
+          </p>
+        </div>
       </div>
     </main>
     <footer class="menu-rodape">
       <input type="text" placeholder="Escreva aqui..." class="mensagem" />
-      <img src="img/enviar.png" class="icone-enviar" />
+      <img
+        src="img/enviar.png"
+        class="icone-enviar"
+        onclick="enviarMensagem()"
+      />
     </footer>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="js/scripts.js"></script>
