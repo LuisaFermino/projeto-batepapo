@@ -150,7 +150,6 @@ main {
 .icone-menu {
   font-size: 24px;
   z-index: 1000;
-  margin-top: 3vh;
 }
 
 .titulo-menu {
@@ -165,12 +164,13 @@ main {
   font-size: 16px;
   font-weight: 400;
   margin-left: 3vw;
-  margin-top: 4vh;
 }
 
 .etapa {
   display: flex;
+  align-items: center;
   margin-left: 20px;
+  margin-top: 2vh;
 }
 
 .titulo-mensagem {
@@ -246,4 +246,11 @@ main {
 .nome {
   font-weight: 700;
   margin-left: 2vw;
+}
+
+.etapa .check {
+  font-size: 20px;
+  color: #28bb25;
+  position: fixed;
+  right: 5vw;
 }
