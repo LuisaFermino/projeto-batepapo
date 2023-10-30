@@ -212,7 +212,7 @@ main {
   width: 100vw;
   min-height: 6vh;
   align-items: center;
-  margin-top: 1vh;
+  margin-top: 0.5vh;
   display: flex;
 }
 
@@ -221,7 +221,7 @@ main {
   width: 100vw;
   min-height: 6vh;
   align-items: center;
-  margin-top: 1vh;
+  margin-top: 0.5vh;
   display: flex;
 }
 
@@ -230,7 +230,7 @@ main {
   width: 100vw;
   min-height: 6vh;
   align-items: center;
-  margin-top: 1vh;
+  margin-top: 0.5vh;
   display: flex;
 }
 
@@ -255,4 +255,8 @@ main {
   color: #28bb25;
   position: fixed;
   right: 5vw;
+}
+
+.para-quem {
+  font-weight: 700;
 }

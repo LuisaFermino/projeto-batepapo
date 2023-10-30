@@ -67,7 +67,7 @@ function mensagensNaTela() {
       containerMensagens.innerHTML += `<div class="mensagem-normais">
       <p class="textos">
         <span class="horario">${usuarios[i].time}</span>
-        <span class="nome">${usuarios[i].from} para ${usuarios[i].to}:</span>
+        <span class="nome">${usuarios[i].from} </span> para <span class="para-quem">${usuarios[i].to}:</span>
         ${usuarios[i].text}
       </p>
     </div>`;
@@ -86,7 +86,7 @@ function mensagensNaTela() {
       containerMensagens.innerHTML += `<div class="mensagem-reservada">
       <p class="textos">
         <span class="horario">${usuarios[i].time}</span>
-        <span class="nome">${usuarios[i].from} reservadamente para ${usuarios[i].to}:</span>
+        <span class="nome">${usuarios[i].from}</span> reservadamente para <span class="para-quem">${usuarios[i].to}:</span>
         ${usuarios[i].text}
       </p> 
     </div>`;
