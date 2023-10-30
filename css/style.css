@@ -218,6 +218,7 @@ main {
 
 .mensagem-normais {
   background-color: #ffffff;
+  width: 100vw;
   min-height: 6vh;
   align-items: center;
   margin-top: 1vh;
@@ -226,6 +227,7 @@ main {
 
 .mensagem-reservada {
   background-color: #ffdede;
+  width: 100vw;
   min-height: 6vh;
   align-items: center;
   margin-top: 1vh;

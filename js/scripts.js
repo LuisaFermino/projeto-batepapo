@@ -1,34 +1,31 @@
 const acionarmenu = document.querySelector(".container-menu");
-let mensagemNormais;
-let mensagemStatus;
-let mensagemPrivada;
-let mensagemEscolhida;
+let nomeUsuario = "";
 const usuarios = [
   {
-    pessoa: "João",
+    from: "João",
     to: "Todos",
     text: "entra na sala...",
     type: "status",
     time: "08:01:17",
   },
   {
-    from: "João",
+    from: "Lulu",
     to: "Todos",
     text: "Bom dia",
     type: "message",
     time: "08:02:50",
   },
   {
-    from: "João",
-    to: "Todos",
-    text: "Bom dia",
-    type: "message",
+    from: "Paulão",
+    to: "lulu",
+    text: "Seis tão bão??",
+    type: "private",
     time: "08:02:50",
   },
 ];
 
 function logar() {
-  let nomeUsuario = document.querySelector(".entrada").value;
+  nomeUsuario = document.querySelector(".entrada").value;
   if (nomeUsuario === "lulu") {
     location.href = "home.html";
   } else {
@@ -46,36 +43,55 @@ function fecharMenu() {
   acionarmenu.classList.add("escondido");
 }
 
-function enviarMensagem() {
+function enviarMensagem(){
   const mensagemDigitada = document.querySelector(".mensagem").value;
-  const containerMensagens = document.querySelector(".container-mensagens");
-  if (mensagemEscolhida === mensagemNormais) {
-    containerMensagens.innerHTML += `<div class="mensagem-normais">
-    <p class="textos">
-      <span class="horario">(10:43)</span>
-      <span class="nome">João</span>
-      entra na sala...
-    </p>
-  </div>`;
-  } else if (mensagemEscolhida === mensagemStatus) {
-    containerMensagens.innerHTML += `<div class="mensagem-status">
-    <p class="textos">
-      <span class="horario">(10:43)</span>
-      <span class="nome">João</span>
-      entra na sala...
-    </p>
-  </div>`;
-  } else if (mensagemEscolhida === mensagemPrivada) {
-    containerMensagens.innerHTML += `<div class="mensagem-reservada">
-    <p class="textos">
-      <span class="horario">(10:43)</span>
-      <span class="nome">João</span>
-      entra na sala...
-    </p> 
-  </div>`;
+  const objetoMensagem = {
+    from: "Lulu",
+    to: "Todos",
+    text: mensagemDigitada,
+    type: "message",
+    time: "08:02:50",
   }
+  usuarios.push(objetoMensagem);
+  mensagensNaTela();
 }
 
-//identificar o tipo da mensagem atrasves do type que esta no objeto
+function mensagensNaTela (){
+  const containerMensagens = document.querySelector(".container-mensagens");
+
+  for(let i = 0;  i < usuarios.length; i++){
+    if(usuarios[i].type === "message"){
+      containerMensagens.innerHTML += `<div class="mensagem-normais">
+      <p class="textos">
+        <span class="horario">${usuarios[i].time}</span>
+        <span class="nome">${usuarios[i].from} para ${usuarios[i].to}:</span>
+        ${usuarios[i].text}
+      </p>
+    </div>`;
+    }
+    else if(usuarios[i].type === "status"){
+      containerMensagens.innerHTML += `<div class="mensagem-status">
+      <p class="textos">
+       <span class="horario">${usuarios[i].time}</span>
+        <span class="nome">${usuarios[i].from}</span>
+        ${usuarios[i].text}
+      </p>
+    </div>`;
+    }
+    else if (usuarios[i].type === "private" && usuarios[i].to === nomeUsuario){
+      containerMensagens.innerHTML += `<div class="mensagem-reservada">
+      <p class="textos">
+        <span class="horario">${usuarios[i].time}</span>
+        <span class="nome">${usuarios[i].from} reservadamente para ${usuarios[i].to}:</span>
+        ${usuarios[i].text}
+      </p> 
+    </div>`;
+    }
+    
+  } 
+}
+mensagensNaTela();
+
+//identificar o tipo da mensagem atraves do type que esta no objeto
 //Fazer um for para conseguir lançar as mensagens e utilizar o objeto para preenche-las
 //Permitir ao usuario que coloque qual tipo de mensagem e para quem (marcar com check)
