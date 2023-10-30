@@ -17,7 +17,7 @@ const usuarios = [
   },
   {
     from: "Paulão",
-    to: "lulu",
+    to: "Admin",
     text: "Seis tão bão??",
     type: "private",
     time: "08:02:50",
@@ -28,7 +28,7 @@ function logar() {
   const acionarHome = document.querySelector(".home");
   const escondeTelaInicial = document.querySelector(".tela-inicial");
   nomeUsuario = document.querySelector(".entrada").value;
-  if (nomeUsuario === "lulu") {
+  if (nomeUsuario === "Admin") {
     acionarHome.classList.remove("escondido");
     escondeTelaInicial.classList.add("escondido");
   } else {
@@ -47,16 +47,19 @@ function fecharMenu() {
 }
 
 function enviarMensagem() {
-  const mensagemDigitada = document.querySelector(".mensagem").value;
+  const containerMensagens = document.querySelector(".container-mensagens");
+  const mensagemDigitada = document.querySelector(".mensagem");
   const objetoMensagem = {
     from: "Lulu",
     to: "Todos",
-    text: mensagemDigitada,
+    text: mensagemDigitada.value,
     type: "message",
     time: "08:02:50",
   };
   usuarios.push(objetoMensagem);
+  containerMensagens.innerHTML = "";
   mensagensNaTela();
+  mensagemDigitada.value = "";
 }
 
 function mensagensNaTela() {
@@ -66,15 +69,15 @@ function mensagensNaTela() {
     if (usuarios[i].type === "message") {
       containerMensagens.innerHTML += `<div class="mensagem-normais">
       <p class="textos">
-        <span class="horario">${usuarios[i].time}</span>
-        <span class="nome">${usuarios[i].from} </span> para <span class="para-quem">${usuarios[i].to}:</span>
+        <span class="horario">(${usuarios[i].time})</span>
+        <span class="nome"> ${usuarios[i].from} </span> para <span class="para-quem">${usuarios[i].to}:</span>
         ${usuarios[i].text}
       </p>
     </div>`;
     } else if (usuarios[i].type === "status") {
       containerMensagens.innerHTML += `<div class="mensagem-status">
       <p class="textos">
-       <span class="horario">${usuarios[i].time}</span>
+       <span class="horario">(${usuarios[i].time})</span>
         <span class="nome">${usuarios[i].from}</span>
         ${usuarios[i].text}
       </p>
@@ -85,7 +88,7 @@ function mensagensNaTela() {
     ) {
       containerMensagens.innerHTML += `<div class="mensagem-reservada">
       <p class="textos">
-        <span class="horario">${usuarios[i].time}</span>
+        <span class="horario">(${usuarios[i].time})</span>
         <span class="nome">${usuarios[i].from}</span> reservadamente para <span class="para-quem">${usuarios[i].to}:</span>
         ${usuarios[i].text}
       </p> 
@@ -95,6 +98,4 @@ function mensagensNaTela() {
 }
 mensagensNaTela();
 
-//identificar o tipo da mensagem atraves do type que esta no objeto
-//Fazer um for para conseguir lançar as mensagens e utilizar o objeto para preenche-las
 //Permitir ao usuario que coloque qual tipo de mensagem e para quem (marcar com check)
