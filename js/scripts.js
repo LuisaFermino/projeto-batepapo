@@ -25,9 +25,12 @@ const usuarios = [
 ];
 
 function logar() {
+  const acionarHome = document.querySelector(".home");
+  const escondeTelaInicial = document.querySelector(".tela-inicial");
   nomeUsuario = document.querySelector(".entrada").value;
   if (nomeUsuario === "lulu") {
-    location.href = "home.html";
+    acionarHome.classList.remove("escondido");
+    escondeTelaInicial.classList.add("escondido");
   } else {
     alert("Usuário ou senha incorretos");
   }
@@ -43,7 +46,7 @@ function fecharMenu() {
   acionarmenu.classList.add("escondido");
 }
 
-function enviarMensagem(){
+function enviarMensagem() {
   const mensagemDigitada = document.querySelector(".mensagem").value;
   const objetoMensagem = {
     from: "Lulu",
@@ -51,16 +54,16 @@ function enviarMensagem(){
     text: mensagemDigitada,
     type: "message",
     time: "08:02:50",
-  }
+  };
   usuarios.push(objetoMensagem);
   mensagensNaTela();
 }
 
-function mensagensNaTela (){
+function mensagensNaTela() {
   const containerMensagens = document.querySelector(".container-mensagens");
 
-  for(let i = 0;  i < usuarios.length; i++){
-    if(usuarios[i].type === "message"){
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].type === "message") {
       containerMensagens.innerHTML += `<div class="mensagem-normais">
       <p class="textos">
         <span class="horario">${usuarios[i].time}</span>
@@ -68,8 +71,7 @@ function mensagensNaTela (){
         ${usuarios[i].text}
       </p>
     </div>`;
-    }
-    else if(usuarios[i].type === "status"){
+    } else if (usuarios[i].type === "status") {
       containerMensagens.innerHTML += `<div class="mensagem-status">
       <p class="textos">
        <span class="horario">${usuarios[i].time}</span>
@@ -77,8 +79,10 @@ function mensagensNaTela (){
         ${usuarios[i].text}
       </p>
     </div>`;
-    }
-    else if (usuarios[i].type === "private" && usuarios[i].to === nomeUsuario){
+    } else if (
+      usuarios[i].type === "private" &&
+      usuarios[i].to === nomeUsuario
+    ) {
       containerMensagens.innerHTML += `<div class="mensagem-reservada">
       <p class="textos">
         <span class="horario">${usuarios[i].time}</span>
@@ -87,8 +91,7 @@ function mensagensNaTela (){
       </p> 
     </div>`;
     }
-    
-  } 
+  }
 }
 mensagensNaTela();
 

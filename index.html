@@ -29,6 +29,68 @@
         </div>
       </main>
     </div>
+
+    <!--TELA PRINCIPAL-->
+    <div class="home escondido">
+      <div class="menu-topo">
+        <img src="img/logo.png" class="logo-home" />
+        <img
+          src="img/icone-usuario.png"
+          class="icone-usuario"
+          onclick="acionarMenu()"
+        />
+      </div>
+      <div>
+        <div class="container-menu escondido">
+          <nav class="menu-lateral">
+            <div class="titulo-mensagem">
+              <p class="titulo-menu">
+                Escolha um contato para enviar mensagem:
+              </p>
+            </div>
+            <div class="etapa">
+              <ion-icon name="people" class="icone-menu"></ion-icon>
+              <span class="nome-usuario">Todos</span>
+              <ion-icon name="checkmark" class="check escondido"></ion-icon>
+            </div>
+            <div class="etapa">
+              <ion-icon name="contact" class="icone-menu"></ion-icon>
+              <p class="nome-usuario">João</p>
+            </div>
+            <div class="etapa">
+              <ion-icon name="contact" class="icone-menu"></ion-icon>
+              <p class="nome-usuario">Maria</p>
+            </div>
+            <div class="titulo-visibilidade">
+              <p class="titulo-menu">Escolha a visibilidade:</p>
+            </div>
+            <div class="etapa">
+              <ion-icon name="unlock" class="icone-menu"></ion-icon>
+              <p class="nome-usuario">Público</p>
+            </div>
+            <div class="etapa">
+              <ion-icon name="lock" class="icone-menu"></ion-icon>
+              <p class="nome-usuario">Reservadamente</p>
+            </div>
+            <ion-icon
+              name="exit"
+              onclick="fecharMenu()"
+              class="exit-menu"
+            ></ion-icon>
+          </nav>
+        </div>
+        <div class="container-mensagens"></div>
+      </div>
+
+      <div class="menu-rodape">
+        <input type="text" placeholder="Escreva aqui..." class="mensagem" />
+        <img
+          src="img/enviar.png"
+          class="icone-enviar"
+          onclick="enviarMensagem()"
+        />
+      </div>
+    </div>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="js/scripts.js"></script>
   </body>
