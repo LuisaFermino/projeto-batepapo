@@ -236,7 +236,7 @@ main {
 
 .textos {
   font-size: 14px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   text-align: justify;
   line-height: 1.4;
 }
@@ -259,4 +259,9 @@ main {
 
 .para-quem {
   font-weight: 700;
+  word-break: break-all;
+}
+
+.descricao {
+  word-break: break-all;
 }

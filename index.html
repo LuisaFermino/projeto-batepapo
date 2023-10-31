@@ -40,47 +40,41 @@
           onclick="acionarMenu()"
         />
       </div>
-      <div>
-        <div class="container-menu escondido">
-          <nav class="menu-lateral">
-            <div class="titulo-mensagem">
-              <p class="titulo-menu">
-                Escolha um contato para enviar mensagem:
-              </p>
-            </div>
+
+      <!--MENU LATERAL-->
+      <div class="container-menu escondido">
+        <nav class="menu-lateral">
+          <div class="titulo-mensagem">
+            <p class="titulo-menu">Escolha um contato para enviar mensagem:</p>
+          </div>
+          <div class="usuarios-ativos">
             <div class="etapa">
               <ion-icon name="people" class="icone-menu"></ion-icon>
-              <span class="nome-usuario">Todos</span>
-              <ion-icon name="checkmark" class="check escondido"></ion-icon>
+              <span class="nome-usuario"> Todos</span>
+              <ion-icon name="checkmark" class="check"></ion-icon>
             </div>
-            <div class="etapa">
-              <ion-icon name="contact" class="icone-menu"></ion-icon>
-              <p class="nome-usuario">João</p>
-            </div>
-            <div class="etapa">
-              <ion-icon name="contact" class="icone-menu"></ion-icon>
-              <p class="nome-usuario">Maria</p>
-            </div>
-            <div class="titulo-visibilidade">
-              <p class="titulo-menu">Escolha a visibilidade:</p>
-            </div>
-            <div class="etapa">
-              <ion-icon name="unlock" class="icone-menu"></ion-icon>
-              <p class="nome-usuario">Público</p>
-            </div>
-            <div class="etapa">
-              <ion-icon name="lock" class="icone-menu"></ion-icon>
-              <p class="nome-usuario">Reservadamente</p>
-            </div>
-            <ion-icon
-              name="exit"
-              onclick="fecharMenu()"
-              class="exit-menu"
-            ></ion-icon>
-          </nav>
-        </div>
-        <div class="container-mensagens"></div>
+          </div>
+          <div class="titulo-visibilidade">
+            <p class="titulo-menu">Escolha a visibilidade:</p>
+          </div>
+          <div class="etapa">
+            <ion-icon name="unlock" class="icone-menu"></ion-icon>
+            <p class="nome-usuario">Público</p>
+          </div>
+          <div class="etapa">
+            <ion-icon name="lock" class="icone-menu"></ion-icon>
+            <p class="nome-usuario">Reservadamente</p>
+          </div>
+          <ion-icon
+            name="exit"
+            onclick="fecharMenu()"
+            class="exit-menu"
+          ></ion-icon>
+        </nav>
       </div>
+
+      <!--TELA ONDE FICAM AS MENSAGENS-->
+      <div class="container-mensagens"></div>
 
       <div class="menu-rodape">
         <input type="text" placeholder="Escreva aqui..." class="mensagem" />

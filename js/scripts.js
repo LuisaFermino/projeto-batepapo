@@ -9,7 +9,7 @@ const usuarios = [
     time: "08:01:17",
   },
   {
-    from: "Lulu",
+    from: "Admin",
     to: "Todos",
     text: "Bom dia",
     type: "message",
@@ -21,6 +21,18 @@ const usuarios = [
     text: "Seis tão bão??",
     type: "private",
     time: "08:02:50",
+  },
+];
+
+const usuariosAtivos = [
+  {
+    name: "Paulão",
+  },
+  {
+    name: "Maria",
+  },
+  {
+    name: "Lulu",
   },
 ];
 
@@ -50,7 +62,7 @@ function enviarMensagem() {
   const containerMensagens = document.querySelector(".container-mensagens");
   const mensagemDigitada = document.querySelector(".mensagem");
   const objetoMensagem = {
-    from: "Lulu",
+    from: "Admin",
     to: "Todos",
     text: mensagemDigitada.value,
     type: "message",
@@ -71,7 +83,7 @@ function mensagensNaTela() {
       <p class="textos">
         <span class="horario">(${usuarios[i].time})</span>
         <span class="nome"> ${usuarios[i].from} </span> para <span class="para-quem">${usuarios[i].to}:</span>
-        ${usuarios[i].text}
+        <span class="descricao">${usuarios[i].text}</span>
       </p>
     </div>`;
     } else if (usuarios[i].type === "status") {
@@ -79,7 +91,7 @@ function mensagensNaTela() {
       <p class="textos">
        <span class="horario">(${usuarios[i].time})</span>
         <span class="nome">${usuarios[i].from}</span>
-        ${usuarios[i].text}
+        <span class="descricao">${usuarios[i].text}</span>
       </p>
     </div>`;
     } else if (
@@ -88,14 +100,28 @@ function mensagensNaTela() {
     ) {
       containerMensagens.innerHTML += `<div class="mensagem-reservada">
       <p class="textos">
-        <span class="horario">(${usuarios[i].time})</span>
-        <span class="nome">${usuarios[i].from}</span> reservadamente para <span class="para-quem">${usuarios[i].to}:</span>
-        ${usuarios[i].text}
+      <span class="horario">(${usuarios[i].time})</span>
+      <span class="nome">${usuarios[i].from}</span> reservadamente para <span class="para-quem">${usuarios[i].to}:</span>
+      <span class="descricao">${usuarios[i].text}</span>
       </p> 
     </div>`;
     }
   }
 }
+
+function usuariosNaTela() {
+  const menuLateral = document.querySelector(".usuarios-ativos");
+
+  for (let i = 0; i < usuariosAtivos.length; i++) {
+    menuLateral.innerHTML += `<div class="etapa">
+    <ion-icon name="people" class="icone-menu"></ion-icon>
+    <span class="nome-usuario">${usuariosAtivos[i].name}</span>
+    <ion-icon name="checkmark" class="check"></ion-icon>
+  </div>`;
+  }
+}
+
 mensagensNaTela();
+usuariosNaTela();
 
 //Permitir ao usuario que coloque qual tipo de mensagem e para quem (marcar com check)
