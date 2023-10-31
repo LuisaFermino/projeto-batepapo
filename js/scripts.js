@@ -113,12 +113,20 @@ function usuariosNaTela() {
   const menuLateral = document.querySelector(".usuarios-ativos");
 
   for (let i = 0; i < usuariosAtivos.length; i++) {
-    menuLateral.innerHTML += `<div class="etapa">
+    menuLateral.innerHTML += `<div class="etapa" onclick="selecionarUsuario(this)">
     <ion-icon name="people" class="icone-menu"></ion-icon>
     <span class="nome-usuario">${usuariosAtivos[i].name}</span>
     <ion-icon name="checkmark" class="check"></ion-icon>
   </div>`;
   }
+}
+
+function selecionarUsuario(contatos) {
+  const selecionado = document.querySelector(".check");
+  if (selecionado !== null) {
+    selecionado.classList.toggle("escondido");
+  }
+  contatos.classList.add("escondido");
 }
 
 mensagensNaTela();
