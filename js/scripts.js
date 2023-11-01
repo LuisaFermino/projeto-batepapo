@@ -1,4 +1,5 @@
 const acionarmenu = document.querySelector(".container-menu");
+let destinatario = "Todos";
 let nomeUsuario = "";
 const usuarios = [
   {
@@ -46,6 +47,10 @@ function logar() {
   } else {
     alert("Usuário ou senha incorretos");
   }
+
+  mensagensNaTela();
+  usuariosNaTela();
+
 }
 
 function acionarMenu() {
@@ -63,7 +68,7 @@ function enviarMensagem() {
   const mensagemDigitada = document.querySelector(".mensagem");
   const objetoMensagem = {
     from: "Admin",
-    to: "Todos",
+    to: destinatario,
     text: mensagemDigitada.value,
     type: "message",
     time: "08:02:50",
@@ -116,20 +121,23 @@ function usuariosNaTela() {
     menuLateral.innerHTML += `<div class="etapa" onclick="selecionarUsuario(this)">
     <ion-icon name="people" class="icone-menu"></ion-icon>
     <span class="nome-usuario">${usuariosAtivos[i].name}</span>
-    <ion-icon name="checkmark" class="check"></ion-icon>
+    <ion-icon name="checkmark" class="check escondido"></ion-icon>
   </div>`;
   }
 }
 
-function selecionarUsuario(contatos) {
-  const selecionado = document.querySelector(".check");
-  if (selecionado !== null) {
-    selecionado.classList.toggle("escondido");
-  }
-  contatos.classList.add("escondido");
+function selecionarUsuario(contato) {
+  const selecionado = document.querySelector(".aparece");
+  selecionado.classList.remove("aparece");
+  selecionado.classList.add("escondido");
+
+  //Estou acessando um elemento a partir de contatos (nem sempre precisa ser do document)
+  const iconeCheck = contato.querySelector(".check");
+  iconeCheck.classList.remove("escondido");
+  iconeCheck.classList.add("aparece");
+
+  destinatario = contato.querySelector(".nome-usuario").innerHTML;
 }
 
-mensagensNaTela();
-usuariosNaTela();
 
 //Permitir ao usuario que coloque qual tipo de mensagem e para quem (marcar com check)

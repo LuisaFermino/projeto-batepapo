@@ -189,6 +189,10 @@ main {
   display: none;
 }
 
+.aparece{
+  display: block;
+}
+
 .exit-menu {
   font-size: 32px;
   position: fixed;
