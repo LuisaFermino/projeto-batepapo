@@ -130,13 +130,21 @@ main {
 
 /* -- MENU LATERAL -- */
 .container-menu {
-  background-color: #00000099;
   width: 100vw;
   height: 100vh;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 2;
+}
+
+.container-esquerda {
+  background-color: #00000099;
+  width: 30vw;
+  height: 100vh;
+  position: relative;
+  right: 0;
+  top: 0;
 }
 
 .menu-lateral {
@@ -189,7 +197,7 @@ main {
   display: none;
 }
 
-.aparece{
+.aparece {
   display: block;
 }
 
