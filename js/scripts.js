@@ -41,12 +41,19 @@ function logar() {
   const acionarHome = document.querySelector(".home");
   const escondeTelaInicial = document.querySelector(".tela-inicial");
   nomeUsuario = document.querySelector(".entrada").value;
-  if (nomeUsuario === "Admin") {
+  const usuario = {
+    name: nomeUsuario
+  }
+
+  const requisicao = axios.post('http://localhost:5000/participants', usuario);
+
+  requisicao.then((resp) => {
     acionarHome.classList.remove("escondido");
     escondeTelaInicial.classList.add("escondido");
-  } else {
-    alert("Usuário ou senha incorretos");
-  }
+  });
+  requisicao.catch((error) => {
+    alert("Usuário já existe");
+  });
 
   mensagensNaTela();
   usuariosNaTela();
