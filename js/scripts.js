@@ -42,10 +42,10 @@ function logar() {
   const escondeTelaInicial = document.querySelector(".tela-inicial");
   nomeUsuario = document.querySelector(".entrada").value;
   const usuario = {
-    name: nomeUsuario
-  }
+    name: nomeUsuario,
+  };
 
-  const requisicao = axios.post('http://localhost:5000/participants', usuario);
+  const requisicao = axios.post("http://localhost:5000/participants", usuario);
 
   requisicao.then((resp) => {
     acionarHome.classList.remove("escondido");
@@ -57,8 +57,16 @@ function logar() {
 
   mensagensNaTela();
   usuariosNaTela();
-
 }
+
+setInterval(function () {
+  nomeUsuario = document.querySelector(".entrada").value;
+  const usuario = {
+    name: nomeUsuario,
+  };
+  const usuarioAtivo = axios.post("http://localhost:5000/status", usuario);
+  console.log("teste");
+}, 5000);
 
 function acionarMenu() {
   if (acionarmenu !== null) {
@@ -145,6 +153,5 @@ function selecionarUsuario(contato) {
 
   destinatario = contato.querySelector(".nome-usuario").innerHTML;
 }
-
 
 //Permitir ao usuario que coloque qual tipo de mensagem e para quem (marcar com check)
