@@ -55,18 +55,14 @@ function logar() {
     alert("Usuário já existe");
   });
 
+  //manter a conexão do usuário depois de logado
+  setInterval(function () {
+    const usuarioAtivo = axios.post("http://localhost:5000/status", usuario);
+  }, 5000);
+
   mensagensNaTela();
   usuariosNaTela();
 }
-
-setInterval(function () {
-  nomeUsuario = document.querySelector(".entrada").value;
-  const usuario = {
-    name: nomeUsuario,
-  };
-  const usuarioAtivo = axios.post("http://localhost:5000/status", usuario);
-  console.log("teste");
-}, 5000);
 
 function acionarMenu() {
   if (acionarmenu !== null) {

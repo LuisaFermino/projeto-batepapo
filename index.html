@@ -58,13 +58,17 @@
           <div class="titulo-visibilidade">
             <p class="titulo-menu">Escolha a visibilidade:</p>
           </div>
-          <div class="etapa">
-            <ion-icon name="unlock" class="icone-menu"></ion-icon>
-            <p class="nome-usuario">Público</p>
-          </div>
-          <div class="etapa">
-            <ion-icon name="lock" class="icone-menu"></ion-icon>
-            <p class="nome-usuario">Reservadamente</p>
+          <div class="tipo-visibilidade">
+            <div class="etapa" onclick="selecionarVisibilidade(this)">
+              <ion-icon name="unlock" class="icone-menu"></ion-icon>
+              <p class="nome-usuario">Público</p>
+              <ion-icon name="checkmark" class="check aparece"></ion-icon>
+            </div>
+            <div class="etapa" onclick="selecionarVisibilidade(this)">
+              <ion-icon name="lock" class="icone-menu"></ion-icon>
+              <p class="nome-usuario">Reservadamente</p>
+              <ion-icon name="checkmark" class="check escondido"></ion-icon>
+            </div>
           </div>
         </nav>
       </div>
