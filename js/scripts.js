@@ -1,30 +1,6 @@
 const acionarmenu = document.querySelector(".container-menu");
 let destinatario = "Todos";
 let nomeUsuario = "";
-const usuarios = [
-  {
-    from: "João",
-    to: "Todos",
-    text: "entra na sala...",
-    type: "status",
-    time: "08:01:17",
-  },
-  {
-    from: "Admin",
-    to: "Todos",
-    text: "Bom dia",
-    type: "message",
-    time: "08:02:50",
-  },
-  {
-    from: "Paulão",
-    to: "Admin",
-    text: "Seis tão bão??",
-    type: "private",
-    time: "08:02:50",
-  },
-];
-
 const usuariosAtivos = [
   {
     name: "Paulão",
@@ -56,11 +32,10 @@ function logar() {
   });
 
   //manter a conexão do usuário depois de logado
-  setInterval(function () {
+  setInterval(() => {
     const usuarioAtivo = axios.post("http://localhost:5000/status", usuario);
   }, 5000);
 
-  mensagensNaTela();
   usuariosNaTela();
 }
 
@@ -90,35 +65,40 @@ function enviarMensagem() {
   mensagemDigitada.value = "";
 }
 
-function mensagensNaTela() {
-  const containerMensagens = document.querySelector(".container-mensagens");
+const mensagens = axios.get("http://localhost:5000/messages");
+mensagens.then(mensagensNaTela);
+mensagens.catch(() => {
+  console.log("Deu erro");
+});
 
-  for (let i = 0; i < usuarios.length; i++) {
-    if (usuarios[i].type === "message") {
+function mensagensNaTela(resposta) {
+  const containerMensagens = document.querySelector(".container-mensagens");
+  for (let i = 0; i < resposta.data.length; i++) {
+    if (resposta.data[i].type === "message") {
       containerMensagens.innerHTML += `<div class="mensagem-normais">
       <p class="textos">
-        <span class="horario">(${usuarios[i].time})</span>
-        <span class="nome"> ${usuarios[i].from} </span> para <span class="para-quem">${usuarios[i].to}:</span>
-        <span class="descricao">${usuarios[i].text}</span>
+        <span class="horario">(${resposta.data[i].time})</span>
+        <span class="nome"> ${resposta.data[i].from} </spa n> para <span class="para-quem">${resposta.data[i].to}:</span>
+        <span class="descricao">${resposta.data[i].text}</span>
       </p>
     </div>`;
-    } else if (usuarios[i].type === "status") {
+    } else if (resposta.data[i].type === "status") {
       containerMensagens.innerHTML += `<div class="mensagem-status">
       <p class="textos">
-       <span class="horario">(${usuarios[i].time})</span>
-        <span class="nome">${usuarios[i].from}</span>
-        <span class="descricao">${usuarios[i].text}</span>
+       <span class="horario">(${resposta.data[i].time})</span>  
+        <span class="nome">${resposta.data[i].from}</span>
+        <span class="descricao">${resposta.data[i].text}</span>
       </p>
     </div>`;
     } else if (
-      usuarios[i].type === "private" &&
-      usuarios[i].to === nomeUsuario
+      resposta.data[i].type === "private" &&
+      resposta.data[i].to === nomeUsuario
     ) {
       containerMensagens.innerHTML += `<div class="mensagem-reservada">
       <p class="textos">
-      <span class="horario">(${usuarios[i].time})</span>
-      <span class="nome">${usuarios[i].from}</span> reservadamente para <span class="para-quem">${usuarios[i].to}:</span>
-      <span class="descricao">${usuarios[i].text}</span>
+      <span class="horario">(${resposta.data[i].time})</span>
+      <span class="nome">${resposta.data[i].from}</span> reservadamente para <span class="para-quem">${resposta.data[i].to}:</span>
+      <span class="descricao">${resposta.data[i].text}</span>
       </p> 
     </div>`;
     }
