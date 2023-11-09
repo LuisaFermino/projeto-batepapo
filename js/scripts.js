@@ -1,6 +1,6 @@
 const acionarmenu = document.querySelector(".container-menu");
+
 let destinatario = "Todos";
-let nomeUsuario = "";
 const usuariosAtivos = [
   {
     name: "Paulão",
@@ -16,12 +16,12 @@ const usuariosAtivos = [
 function logar() {
   const acionarHome = document.querySelector(".home");
   const escondeTelaInicial = document.querySelector(".tela-inicial");
-  nomeUsuario = document.querySelector(".entrada").value;
-  const usuario = {
-    name: nomeUsuario,
-  };
 
-  const requisicao = axios.post("http://localhost:5000/participants", usuario);
+  nomeUsuario = document.querySelector(".entrada").value;
+
+  const requisicao = axios.post("http://localhost:5000/participants", {
+    name: nomeUsuario,
+  });
 
   requisicao.then((resp) => {
     acionarHome.classList.remove("escondido");
@@ -30,11 +30,6 @@ function logar() {
   requisicao.catch((error) => {
     alert("Usuário já existe");
   });
-
-  //manter a conexão do usuário depois de logado
-  setInterval(() => {
-    const usuarioAtivo = axios.post("http://localhost:5000/status", usuario);
-  }, 5000);
 
   usuariosNaTela();
 }
@@ -52,27 +47,35 @@ function fecharMenu() {
 function enviarMensagem() {
   const containerMensagens = document.querySelector(".container-mensagens");
   const mensagemDigitada = document.querySelector(".mensagem");
+
   const objetoMensagem = {
-    from: "Admin",
+    from: nomeUsuario,
     to: destinatario,
     text: mensagemDigitada.value,
     type: "message",
-    time: "08:02:50",
   };
-  usuarios.push(objetoMensagem);
+
+  const mensagem = axios.post("http://localhost:5000/messages", objetoMensagem);
+
   containerMensagens.innerHTML = "";
-  mensagensNaTela();
   mensagemDigitada.value = "";
+  atualizaMensagens();
 }
 
-const mensagens = axios.get("http://localhost:5000/messages");
-mensagens.then(mensagensNaTela);
-mensagens.catch(() => {
-  console.log("Deu erro");
-});
+//manter a requisição para mensagens atualizadas
+function atualizaMensagens() {
+  const mensagens = axios.get("http://localhost:5000/messages");
+  mensagens.then(mensagensNaTela);
+  mensagens.catch(() => {
+    console.log("Deu erro");
+  });
+}
+
+setInterval(atualizaMensagens, 5000);
 
 function mensagensNaTela(resposta) {
   const containerMensagens = document.querySelector(".container-mensagens");
+
   for (let i = 0; i < resposta.data.length; i++) {
     if (resposta.data[i].type === "message") {
       containerMensagens.innerHTML += `<div class="mensagem-normais">
@@ -104,6 +107,12 @@ function mensagensNaTela(resposta) {
     }
   }
 }
+
+//manter a conexão do usuário depois de logado
+// function manterConexaoUsuario() {
+//   const usuarioAtivo = axios.post("http://localhost:5000/status", usuario);
+// }
+// setInterval(manterConexaoUsuario, 5000);
 
 function usuariosNaTela() {
   const menuLateral = document.querySelector(".usuarios-ativos");
