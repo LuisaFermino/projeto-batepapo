@@ -1,120 +1,23 @@
 const acionarmenu = document.querySelector(".container-menu");
-const resposta = {
-  data: [
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-    {
-      from: "alo",
-      to: "socorro",
-      text: "stevan ferreira",
-      type: "message",
-      time: "20:07",
-    },
-  ],
-};
 let nomeUsuario = "";
-
 let destinatario = "Todos";
-const usuariosAtivos = [
-  {
-    name: "Paulão",
-  },
-  {
-    name: "Maria",
-  },
-  {
-    name: "Lulu",
-  },
-];
+let visibilidadeInicial = "message";
+const API = "http://localhost:5000";
 
 function logar() {
   const acionarHome = document.querySelector(".home");
   const escondeTelaInicial = document.querySelector(".tela-inicial");
-
   nomeUsuario = document.querySelector(".entrada").value;
 
   axios
-    .post("http://localhost:5000/participants", {
+    .post(`${API}/participants`, {
       name: nomeUsuario,
     })
     .then((resp) => {
       acionarHome.classList.remove("escondido");
       escondeTelaInicial.classList.add("escondido");
+      atualizaMensagens();
+      setInterval(atualizaMensagens, 3000);
       setInterval(manterConexaoUsuario, 5000);
     })
     .catch((error) => {
@@ -122,7 +25,6 @@ function logar() {
     });
 
   usuariosNaTela();
-  atualizaMensagens();
 }
 
 function acionarMenu() {
@@ -143,40 +45,32 @@ function enviarMensagem() {
     from: nomeUsuario,
     to: destinatario,
     text: mensagemDigitada.value,
-    type: "message",
+    type: visibilidadeInicial,
   };
-
-  axios.post("http://localhost:5000/messages", objetoMensagem);
-
-  containerMensagens.innerHTML = "";
+  axios.post(`${API}/messages`, objetoMensagem).then(atualizaMensagens);
   mensagemDigitada.value = "";
-  atualizaMensagens();
 }
 
 //manter a requisição para mensagens atualizadas
 function atualizaMensagens() {
-  // const mensagens = axios.get("http://localhost:5000/messages");
-  // mensagens.then(mensagensNaTela);
-  // mensagens.catch(() => {
-  //   console.log("Deu erro");
-  // });
-  //esta comentado pq passei um objeto na MARRA
-
-  mensagensNaTela(resposta);
+  const mensagens = axios
+    .get(`${API}/messages`)
+    .then(mensagensNaTela)
+    .catch(() => {
+      console.log("Deu erro");
+    });
 }
 
-// setInterval(atualizaMensagens, 5000);
-
 function mensagensNaTela(resposta) {
-  console.log(resposta);
   const containerMensagens = document.querySelector(".container-mensagens");
+  containerMensagens.innerHTML = "";
 
   for (let i = 0; i < resposta.data.length; i++) {
     if (resposta.data[i].type === "message") {
       containerMensagens.innerHTML += `<div class="mensagem-normais mensagens">
       <p class="textos">
         <span class="horario">(${resposta.data[i].time})</span>
-        <span class="nome"> ${resposta.data[i].from} </spa n> para <span class="para-quem">${resposta.data[i].to}:</span>
+        <span class="nome"> ${resposta.data[i].from} </span> para <span class="para-quem">${resposta.data[i].to}:</span>
         <span class="descricao">${resposta.data[i].text}</span>
       </p>
     </div>`;
@@ -189,8 +83,9 @@ function mensagensNaTela(resposta) {
       </p>
     </div>`;
     } else if (
-      resposta.data[i].type === "private" &&
-      resposta.data[i].to === nomeUsuario
+      (resposta.data[i].type === "private_message" &&
+        resposta.data[i].to === nomeUsuario) ||
+      resposta.data[i].from === nomeUsuario
     ) {
       containerMensagens.innerHTML += `<div class="mensagem-reservada mensagens">
       <p class="textos">
@@ -208,7 +103,7 @@ function mensagensNaTela(resposta) {
 
 //manter a conexão do usuário depois de logado
 function manterConexaoUsuario() {
-  const usuarioAtivo = axios.post("http://localhost:5000/status", {
+  const usuarioAtivo = axios.post(`${API}/status`, {
     name: nomeUsuario,
   });
 }
@@ -238,4 +133,25 @@ function selecionarUsuario(contato) {
   destinatario = contato.querySelector(".nome-usuario").innerHTML;
 }
 
-//Permitir ao usuario que coloque qual tipo de mensagem e para quem (marcar com check)
+function selecionarVisibilidade(visibilidade) {
+  const selecionado = document.querySelector(".tipo.aparece");
+  selecionado.classList.remove("aparece");
+  selecionado.classList.add("escondido");
+
+  //Estou acessando um elemento a partir de contatos (nem sempre precisa ser do document)
+  const iconeCheck = visibilidade.querySelector(".tipo");
+  iconeCheck.classList.remove("escondido");
+  iconeCheck.classList.add("aparece");
+
+  const tipo = visibilidade.querySelector(".nome-usuario").innerHTML;
+  if (tipo === "Público") {
+    visibilidadeInicial = "message";
+  } else {
+    visibilidadeInicial = "private_message";
+  }
+}
+
+//Carrega usuários
+function participantesAtivos() {
+  axios.get(`${API}/participants`).then(resultado);
+}
