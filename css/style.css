@@ -218,6 +218,7 @@ main {
   left: 0;
   top: 12vh;
   min-height: 50vh;
+  overflow-y: scroll;
 }
 .mensagem-status {
   background-color: #dcdcdc;
