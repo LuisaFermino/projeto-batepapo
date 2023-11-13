@@ -17,14 +17,13 @@ function logar() {
       acionarHome.classList.remove("escondido");
       escondeTelaInicial.classList.add("escondido");
       atualizaMensagens();
+      atualizaParticipantes();
       setInterval(atualizaMensagens, 3000);
       setInterval(manterConexaoUsuario, 5000);
     })
     .catch((error) => {
       alert("Usuário já existe");
     });
-
-  usuariosNaTela();
 }
 
 function acionarMenu() {
@@ -108,18 +107,6 @@ function manterConexaoUsuario() {
   });
 }
 
-function usuariosNaTela() {
-  const menuLateral = document.querySelector(".usuarios-ativos");
-
-  for (let i = 0; i < usuariosAtivos.length; i++) {
-    menuLateral.innerHTML += `<div class="etapa" onclick="selecionarUsuario(this)">
-    <ion-icon name="people" class="icone-menu"></ion-icon>
-    <span class="nome-usuario">${usuariosAtivos[i].name}</span>
-    <ion-icon name="checkmark" class="check escondido"></ion-icon>
-  </div>`;
-  }
-}
-
 function selecionarUsuario(contato) {
   const selecionado = document.querySelector(".aparece");
   selecionado.classList.remove("aparece");
@@ -152,6 +139,24 @@ function selecionarVisibilidade(visibilidade) {
 }
 
 //Carrega usuários
-function participantesAtivos() {
-  axios.get(`${API}/participants`).then(resultado);
+function atualizaParticipantes() {
+  axios
+    .get(`${API}/participants`)
+    .then(participantesAtivos)
+    .catch(() => {
+      console.log("Deu erro");
+    });
+}
+
+function participantesAtivos(participante) {
+  //aqui vou montar a estrutura do container onde ficam os participantes
+  const menuLateral = document.querySelector(".usuarios-ativos");
+
+  for (let i = 0; i < participante.data.length; i++) {
+    menuLateral.innerHTML += `<div class="etapa" onclick="selecionarUsuario(this)">
+    <ion-icon name="people" class="icone-menu"></ion-icon>
+    <span class="nome-usuario"> ${nomeUsuario} </span>
+    <ion-icon name="checkmark" class="check escondido"></ion-icon>
+  </div>`;
+  }
 }
