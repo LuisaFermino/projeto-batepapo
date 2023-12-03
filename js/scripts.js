@@ -17,7 +17,7 @@ function logar() {
       acionarHome.classList.remove("escondido");
       escondeTelaInicial.classList.add("escondido");
       atualizaMensagens();
-      atualizaParticipantes();
+      setInterval(atualizaParticipantes, 1000);
       setInterval(atualizaMensagens, 3000);
       setInterval(manterConexaoUsuario, 5000);
     })
@@ -148,15 +148,22 @@ function atualizaParticipantes() {
     });
 }
 
-function participantesAtivos(participante) {
+function participantesAtivos(resp) {
   //aqui vou montar a estrutura do container onde ficam os participantes
   const menuLateral = document.querySelector(".usuarios-ativos");
+  menuLateral.innerHTML = ` <div class="etapa" onclick="selecionarUsuario(this)">
+      <ion-icon name="people" class="icone-menu"></ion-icon>
+      <span class="nome-usuario"> Todos</span>
+      <ion-icon name="checkmark" class="check aparece"></ion-icon>
+    </div>`;
 
-  for (let i = 0; i < participante.data.length; i++) {
-    menuLateral.innerHTML += `<div class="etapa" onclick="selecionarUsuario(this)">
-    <ion-icon name="people" class="icone-menu"></ion-icon>
-    <span class="nome-usuario"> ${nomeUsuario} </span>
-    <ion-icon name="checkmark" class="check escondido"></ion-icon>
-  </div>`;
+  for (let i = 0; i < resp.data.length; i++) {
+    if (nomeUsuario !== resp.data[i].name) {
+      menuLateral.innerHTML += `<div class="etapa" onclick="selecionarUsuario(this)">
+      <ion-icon name="people" class="icone-menu"></ion-icon>
+      <span class="nome-usuario"> ${resp.data[i].name} </span>
+      <ion-icon name="checkmark" class="check escondido"></ion-icon>
+    </div>`;
+    }
   }
 }
